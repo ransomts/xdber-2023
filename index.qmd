@@ -4,6 +4,7 @@ author: "Tim Ransom"
 email: "tsranso@clemson.edu"
 html:
   anchor-sections: true
+  default-image-extension: svg
 format:
   revealjs:
     menu:
@@ -26,7 +27,9 @@ library(ggvenn)
 ```
 
 
-## abstract
+
+<!-- 
+# abstract
 
 Programmers and programming students often find support and community through online spaces. Reddit in particular has a large number of active users participating in online communities of practice for programming and learning to program. Topics being discussed in these two spaces provide a rich data source to address the research question: How can we identify topics of discussion for learning through online communities?
 
@@ -35,7 +38,7 @@ In this work I showcase an established natural language topic modeling algorithm
 I investigate the communities r/Python and r/learnpython for this work. Both are highly active (approx. 1.1 million and 648 thousand members respectively) spaces focused on the practice and learning of the Python programming language. This language is quickly becoming the most popular tool of choice for introductory computing courses and so warrants educational analysis from as many data sources as possible.
 
 This methodology of community comparison is easily extended into other domains with online communities. For example on Reddit there are dual communites for math (r/math & r/learnmath), engineering (r/engineering & r/EngineeringStudents), physics (r/Physics & r/learnPhysics), and several other STEM disciplines.
-
+-->
 
 ## who am I
 
@@ -48,7 +51,7 @@ This methodology of community comparison is easily extended into other domains w
 :::
 
 ::: {.column width="45%"}
-![Tim](figures/tim-headshot.jpg){width=80%, fig-alt="photograph of Tim"}
+![](figures/tim-headshot.jpg){width=80%, fig-alt="photograph of Tim"}
 :::
 ::::
 
@@ -59,11 +62,13 @@ I am the greatest
 
 ## What is Reddit
 
+![Reddit](figures/Reddit_Mark_OnWhite.svg){width=10%}
+
 BBS-system pseudo-anonymous social media
 
 Organized into subreddits around topics
 
-### Conceptualized as a community of practice
+## Conceptualizing subreddits communities of practice
 
  - people :: subscribed users
  - practice :: topic of the subreddit
@@ -82,6 +87,14 @@ LDA is a well established
  Applying Topic Modling to Reddit
 
 ## venn diagram
+
+```{r}
+library(ggvenn)
+
+data <- list(`python` = c("code", "python", "function"),
+          `learnpython` = c("help", "how to", "want", "python"))
+ggvenn(data, c("python", "learnpython"), show_elements = TRUE, label_sep = "\n\n", fill_color = c("#F56600", "#522D80"))
+```
 
 ## {auto-animate=true auto-animate-easing="ease-in-out"}
 
@@ -115,14 +128,6 @@ lisp
 :::
 :::
 
-## somethnig
-```{r}
-library(ggvenn)
-
-data <- list(`python` = c("code", "python", "function"),
-          `learnpython` = c("help", "how to", "want", "python"))
-ggvenn(data, c("python", "learnpython"), show_elements = TRUE, label_sep = "\n\n", fill_color = c("#F56600", "#522D80"))
-```
 
 ## Single Subreddit Topics
 
@@ -140,7 +145,7 @@ Right column
 ::::
 ### r/learnpython
 
-## Subreddit comparisons
+# Subreddit comparisons
 
 ::: {.panel-tabset}
 
@@ -156,6 +161,17 @@ Right column
 
 ## Next Steps
 
+- Interpret other subreddits
+- Interpret other disciplines
+
 ## Contact info
 
-{{< qrcode https://tsranso.people.clemson.edu qr1 width=500 height=500 >}}
+email:
+tsranso@clemson.edu
+
+github:
+[https://github.com/ransomts](https://github.com/ransomts)
+
+website:
+[tsranso.people.clemson.edu](tsranso.people.clemson.edu)
+{{< qrcode https://tsranso.people.clemson.edu qr1 width=100 height=100 >}}

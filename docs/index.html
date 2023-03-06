@@ -6,7 +6,8 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/quarto-contrib/qrcodejs-v1.0.0/qrcode.js"></script><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Tim Ransom">
@@ -335,12 +336,19 @@ Tim Ransom
 </div>
 
 </section>
-<section id="abstract" class="slide level2">
-<h2>abstract</h2>
-<p>Programmers and programming students often find support and community through online spaces. Reddit in particular has a large number of active users participating in online communities of practice for programming and learning to program. Topics being discussed in these two spaces provide a rich data source to address the research question: How can we identify topics of discussion for learning through online communities?</p>
-<p>In this work I showcase an established natural language topic modeling algorithm (latent drilect allocation, LDA) to compare the topics of discussion between a community of practice and another community intended for learning that practice. Cross community comparisons and intra community historical trends both contribute to an understanding of what practitioners consider important for learning the practice, learners ponts of struggle, and data indicating evolutions of the practice over time.</p>
-<p>I investigate the communities r/Python and r/learnpython for this work. Both are highly active (approx. 1.1 million and 648 thousand members respectively) spaces focused on the practice and learning of the Python programming language. This language is quickly becoming the most popular tool of choice for introductory computing courses and so warrants educational analysis from as many data sources as possible.</p>
-<p>This methodology of community comparison is easily extended into other domains with online communities. For example on Reddit there are dual communites for math (r/math &amp; r/learnmath), engineering (r/engineering &amp; r/EngineeringStudents), physics (r/Physics &amp; r/learnPhysics), and several other STEM disciplines.</p>
+<section class="slide level2">
+
+<!-- 
+# abstract
+
+Programmers and programming students often find support and community through online spaces. Reddit in particular has a large number of active users participating in online communities of practice for programming and learning to program. Topics being discussed in these two spaces provide a rich data source to address the research question: How can we identify topics of discussion for learning through online communities?
+
+In this work I showcase an established natural language topic modeling algorithm (latent drilect allocation, LDA) to compare the topics of discussion between a community of practice and another community intended for learning that practice. Cross community comparisons and intra community historical trends both contribute to an understanding of what practitioners consider important for learning the practice, learners ponts of struggle, and data indicating evolutions of the practice over time.
+
+I investigate the communities r/Python and r/learnpython for this work. Both are highly active (approx. 1.1 million and 648 thousand members respectively) spaces focused on the practice and learning of the Python programming language. This language is quickly becoming the most popular tool of choice for introductory computing courses and so warrants educational analysis from as many data sources as possible.
+
+This methodology of community comparison is easily extended into other domains with online communities. For example on Reddit there are dual communites for math (r/math & r/learnmath), engineering (r/engineering & r/EngineeringStudents), physics (r/Physics & r/learnPhysics), and several other STEM disciplines.
+-->
 </section>
 <section id="who-am-i" class="slide level2">
 <h2>who am I</h2>
@@ -353,12 +361,7 @@ Tim Ransom
 <li>Clemson ESED graduate Student</li>
 </ul>
 </div><div class="column" style="width:45%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
 <p><img data-src="figures/tim-headshot.jpg" alt="photograph of Tim"></p>
-<p></p><figcaption>Tim</figcaption><p></p>
-</figure>
-</div>
 </div>
 </div>
 <aside class="notes">
@@ -377,9 +380,12 @@ Tim Ransom
 </section>
 <section id="what-is-reddit" class="slide level2">
 <h2>What is Reddit</h2>
-<p>BBS-system pseudo-anonymous social media</p>
+
+<img data-src="figures/Reddit_Mark_OnWhite.svg" style="width:10.0%" class="r-stretch quarto-figure-center"><p class="caption">Reddit</p><p>BBS-system pseudo-anonymous social media</p>
 <p>Organized into subreddits around topics</p>
-<h3 id="conceptualized-as-a-community-of-practice">Conceptualized as a community of practice</h3>
+</section>
+<section id="conceptualizing-subreddits-communities-of-practice" class="slide level2">
+<h2>Conceptualizing subreddits communities of practice</h2>
 <ul>
 <li>people :: subscribed users</li>
 <li>practice :: topic of the subreddit</li>
@@ -396,7 +402,8 @@ Tim Ransom
 </section>
 <section id="venn-diagram" class="slide level2">
 <h2>venn diagram</h2>
-</section>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
 <section id="section" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
 <h2 data-id="quarto-animate-title"></h2>
 <div class="r-hstack">
@@ -425,10 +432,6 @@ Tim Ransom
 </div>
 </div>
 </section>
-<section id="somethnig" class="slide level2">
-<h2>somethnig</h2>
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
 <section id="single-subreddit-topics" class="slide level2">
 <h2>Single Subreddit Topics</h2>
 <h3 id="rpython">r/python</h3>
@@ -441,8 +444,9 @@ Tim Ransom
 </div>
 <h3 id="rlearnpython">r/learnpython</h3>
 </section>
-<section id="subreddit-comparisons" class="slide level2">
-<h2>Subreddit comparisons</h2>
+<section>
+<section id="subreddit-comparisons" class="title-slide slide level1 center">
+<h1>Subreddit comparisons</h1>
 <div class="panel-tabset">
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">2019</a></li><li><a href="#tabset-1-2">2020</a></li></ul>
 <div class="tab-content">
@@ -457,15 +461,26 @@ Tim Ransom
 </section>
 <section id="next-steps" class="slide level2">
 <h2>Next Steps</h2>
+<ul>
+<li>Interpret other subreddits</li>
+<li>Interpret other disciplines</li>
+</ul>
 </section>
 <section id="contact-info" class="slide level2">
 <h2>Contact info</h2>
-<p></p>
+<p>email: tsranso@clemson.edu</p>
+<p>github: <a href="https://github.com/ransomts">https://github.com/ransomts</a></p>
+<p>website: <a href="tsranso.people.clemson.edu">tsranso.people.clemson.edu</a></p>
+<div id="qr1" class="qrcode"></div>
+<script type="text/javascript">
+var qrcode = new QRCode("qr1", {"colorLight":"#ffffff","colorDark":"#000000","height":"100","width":"100","text":"https://tsranso.people.clemson.edu"});
+</script>
+    
 
 <img src="figures/Clemson_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

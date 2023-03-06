@@ -1,0 +1,161 @@
+---
+title: "xdber-2023"
+author: "Tim Ransom"
+email: "tsranso@clemson.edu"
+html:
+  anchor-sections: true
+format:
+  revealjs:
+    menu:
+      side: left
+      width: wide
+    logo: figures/Clemson_logo.png
+    theme: serif
+---
+
+```{r setup, include=FALSE}
+library(languageserver)
+library(markdown)
+library(tidyverse)
+library(magrittr)
+library(qrcode)
+library(VennDiagram)
+library(ggpubr)
+library(ggiraph)
+library(ggvenn)
+```
+
+
+## abstract
+
+Programmers and programming students often find support and community through online spaces. Reddit in particular has a large number of active users participating in online communities of practice for programming and learning to program. Topics being discussed in these two spaces provide a rich data source to address the research question: How can we identify topics of discussion for learning through online communities?
+
+In this work I showcase an established natural language topic modeling algorithm (latent drilect allocation, LDA) to compare the topics of discussion between a community of practice and another community intended for learning that practice. Cross community comparisons and intra community historical trends both contribute to an understanding of what practitioners consider important for learning the practice, learners ponts of struggle, and data indicating evolutions of the practice over time.
+
+I investigate the communities r/Python and r/learnpython for this work. Both are highly active (approx. 1.1 million and 648 thousand members respectively) spaces focused on the practice and learning of the Python programming language. This language is quickly becoming the most popular tool of choice for introductory computing courses and so warrants educational analysis from as many data sources as possible.
+
+This methodology of community comparison is easily extended into other domains with online communities. For example on Reddit there are dual communites for math (r/math & r/learnmath), engineering (r/engineering & r/EngineeringStudents), physics (r/Physics & r/learnPhysics), and several other STEM disciplines.
+
+
+## who am I
+
+:::: {.columns}
+::: {.column width="45%"}
+- Computer Scientist
+- Mathematician
+- English Speaker
+- Clemson ESED graduate Student
+:::
+
+::: {.column width="45%"}
+![Tim](figures/tim-headshot.jpg){width=80%, fig-alt="photograph of Tim"}
+:::
+::::
+
+
+::: {.notes}
+I am the greatest
+:::
+
+## What is Reddit
+
+BBS-system pseudo-anonymous social media
+
+Organized into subreddits around topics
+
+### Conceptualized as a community of practice
+
+ - people :: subscribed users
+ - practice :: topic of the subreddit
+ - culture :: internet jargon
+   
+## Natural Language Processing Topic Modeling
+
+Documents are comprised of a mixture of terms and topics.
+
+With sufficently many documents we can correlate the relationship between terms and topics.
+
+### Latent Drilicht Allocation
+
+LDA is a well established 
+
+ Applying Topic Modling to Reddit
+
+## venn diagram
+
+## {auto-animate=true auto-animate-easing="ease-in-out"}
+
+::: {.r-hstack}
+::: {data-id="box1" auto-animate-delay="0" style="background: #2780e3; width: 200px; height: 150px; margin: 10px;"}
+something
+:::
+
+::: {data-id="box2" auto-animate-delay="0.1" style="background: #3fb618; width: 200px; height: 150px; margin: 10px;"}
+foo
+:::
+
+::: {data-id="box3" auto-animate-delay="0.2" style="background: #e83e8c; width: 200px; height: 150px; margin: 10px;"}
+bar
+:::
+:::
+
+## {auto-animate=true auto-animate-easing="ease-in-out"}
+
+::: {.r-stack}
+::: {data-id="box1" style="background: #2780e3; width: 350px; height: 350px; border-radius: 200px;"}
+python
+:::
+
+::: {data-id="box2" style="background: #3fb618; width: 250px; height: 250px; border-radius: 200px;"}
+haskell
+:::
+
+::: {data-id="box3" style="background: #e83e8c; width: 150px; height: 150px; border-radius: 200px;"}
+lisp
+:::
+:::
+
+## somethnig
+```{r}
+library(ggvenn)
+
+data <- list(`python` = c("code", "python", "function"),
+          `learnpython` = c("help", "how to", "want", "python"))
+ggvenn(data, c("python", "learnpython"), show_elements = TRUE, label_sep = "\n\n", fill_color = c("#F56600", "#522D80"))
+```
+
+## Single Subreddit Topics
+
+### r/python
+:::: {.columns}
+
+::: {.column width="45%"}
+Left column
+:::
+
+::: {.column width="45%"}
+Right column
+:::
+
+::::
+### r/learnpython
+
+## Subreddit comparisons
+
+::: {.panel-tabset}
+
+### 2019
+
+2019
+
+### 2020
+
+2020
+
+:::
+
+## Next Steps
+
+## Contact info
+
+{{< qrcode https://tsranso.people.clemson.edu qr1 width=500 height=500 >}}

@@ -1,0 +1,12 @@
+INFO [2023-03-06 09:04:24] $x
+INFO [2023-03-06 09:04:24] list(set1, set2)
+INFO [2023-03-06 09:04:24] 
+INFO [2023-03-06 09:04:24] $category.names
+INFO [2023-03-06 09:04:24] c("r/python", "r/learnpython")
+INFO [2023-03-06 09:04:24] 
+INFO [2023-03-06 09:04:24] $filename
+INFO [2023-03-06 09:04:24] [1] "figures/venn_diagramm.png"
+INFO [2023-03-06 09:04:24] 
+INFO [2023-03-06 09:04:24] $output
+INFO [2023-03-06 09:04:24] [1] TRUE
+INFO [2023-03-06 09:04:24] 

@@ -13,6 +13,7 @@ format:
       side: left
       width: wide
     logo: figures/Clemson_logo.png
+    css: logo.css
     theme: serif
 ---
 

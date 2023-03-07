@@ -2,6 +2,8 @@
 title: "xdber-2023"
 author: "Tim Ransom"
 email: "tsranso@clemson.edu"
+bibliography: references.bib
+csl: ieee.csl
 html:
   anchor-sections: true
   default-image-extension: svg
@@ -15,6 +17,7 @@ format:
 ---
 
 ```{r setup, include=FALSE}
+library(pak)
 library(languageserver)
 library(markdown)
 library(tidyverse)
@@ -82,7 +85,7 @@ With sufficently many documents we can correlate the relationship between terms 
 
 ### Latent Drilicht Allocation
 
-LDA is a well established 
+LDA [@blei2003latent] is a well established 
 
  Applying Topic Modling to Reddit
 
@@ -163,6 +166,11 @@ Right column
 
 - Interpret other subreddits
 - Interpret other disciplines
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
 
 ## Contact info
 

@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Tim Ransom">
-  <title>xdber-2023</title>
+  <title>Topic modeling Communities of Practice to Identify Learning Barriers</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -345,7 +345,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">xdber-2023</h1>
+  <h1 class="title">Topic modeling Communities of Practice to Identify Learning Barriers</h1>
+  <p class="subtitle">X-DBER 2023</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -370,8 +371,8 @@ I investigate the communities r/Python and r/learnpython for this work. Both are
 This methodology of community comparison is easily extended into other domains with online communities. For example on Reddit there are dual communites for math (r/math & r/learnmath), engineering (r/engineering & r/EngineeringStudents), physics (r/Physics & r/learnPhysics), and several other STEM disciplines.
 -->
 </section>
-<section id="who-am-i" class="slide level2">
-<h2>who am I</h2>
+<section id="who-i-am" class="slide level2">
+<h2>who I am</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
 <ul>
@@ -380,7 +381,7 @@ This methodology of community comparison is easily extended into other domains w
 <li>English Speaker</li>
 <li>Clemson ESED graduate Student</li>
 </ul>
-</div><div class="column" style="width:45%;">
+</div><div class="column" style="width:25%;">
 <p><img data-src="figures/tim-headshot.jpg" alt="photograph of Tim"></p>
 </div>
 </div>
@@ -398,83 +399,63 @@ This methodology of community comparison is easily extended into other domains w
           display:block!important;
       }</style></aside>
 </section>
+<section id="natural-language-processing-topic-modeling" class="slide level2">
+<h2>Natural Language Processing Topic Modeling</h2>
+<p>Documents are comprised of a mixture of terms and topics.</p>
+<p>With sufficiently many documents we can correlate the relationship between terms and topics.</p>
+</section>
+<section id="latent-drilicht-allocation" class="slide level2">
+<h2>Latent Drilicht Allocation</h2>
+<p>LDA <span class="citation" data-cites="blei2003latent"><a href="#/references" role="doc-biblioref" onclick="">[1]</a></span> is a well established</p>
+<p>Applying Topic Modling to Reddit</p>
+</section>
+<section id="illuminatory-example" class="slide level2">
+<h2>Illuminatory Example</h2>
+
+<img data-src="figures/blei-2003-example-lda.png" class="r-stretch"></section>
 <section id="what-is-reddit" class="slide level2">
 <h2>What is Reddit</h2>
 
 <img data-src="figures/Reddit_Mark_OnWhite.svg" style="width:10.0%" class="r-stretch quarto-figure-center"><p class="caption">Reddit</p><p>BBS-system pseudo-anonymous social media</p>
 <p>Organized into subreddits around topics</p>
 </section>
-<section id="conceptualizing-subreddits-communities-of-practice" class="slide level2">
-<h2>Conceptualizing subreddits communities of practice</h2>
+<section id="conceptualizing-subreddits-as-communities-of-practice" class="slide level2">
+<h2>Conceptualizing subreddits as communities of practice</h2>
 <ul>
 <li>people :: subscribed users</li>
 <li>practice :: topic of the subreddit</li>
 <li>culture :: internet jargon</li>
 </ul>
 </section>
-<section id="natural-language-processing-topic-modeling" class="slide level2">
-<h2>Natural Language Processing Topic Modeling</h2>
-<p>Documents are comprised of a mixture of terms and topics.</p>
-<p>With sufficently many documents we can correlate the relationship between terms and topics.</p>
-<h3 id="latent-drilicht-allocation">Latent Drilicht Allocation</h3>
-<p>LDA <span class="citation" data-cites="blei2003latent"><a href="#/references" role="doc-biblioref" onclick="">[1]</a></span> is a well established</p>
-<p>Applying Topic Modling to Reddit</p>
-</section>
-<section id="venn-diagram" class="slide level2">
-<h2>venn diagram</h2>
+<section id="subreddit-cop-topic-overlap" class="slide level2">
+<h2>Subreddit CoP Topic Overlap</h2>
+<div class="cell">
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
-<section id="section" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
-<h2 data-id="quarto-animate-title"></h2>
-<div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 200px; height: 150px; margin: 10px;">
-<p>something</p>
 </div>
-<div data-id="box2" data-auto-animate-delay="0.1" style="background: #3fb618; width: 200px; height: 150px; margin: 10px;">
-<p>foo</p>
-</div>
-<div data-id="box3" data-auto-animate-delay="0.2" style="background: #e83e8c; width: 200px; height: 150px; margin: 10px;">
-<p>bar</p>
-</div>
-</div>
-</section>
-<section id="section-1" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
-<h2 data-id="quarto-animate-title"></h2>
-<div class="r-stack">
-<div data-id="box1" style="background: #2780e3; width: 350px; height: 350px; border-radius: 200px;">
-<p>python</p>
-</div>
-<div data-id="box2" style="background: #3fb618; width: 250px; height: 250px; border-radius: 200px;">
-<p>haskell</p>
-</div>
-<div data-id="box3" style="background: #e83e8c; width: 150px; height: 150px; border-radius: 200px;">
-<p>lisp</p>
-</div>
-</div>
-</section>
+
+<img data-src="figures/subreddit_venn.svg" class="r-stretch"></section>
 <section id="single-subreddit-topics" class="slide level2">
 <h2>Single Subreddit Topics</h2>
-<h3 id="rpython">r/python</h3>
 <div class="columns">
 <div class="column" style="width:45%;">
+<h3 id="rpython">r/python</h3>
 <p>Left column</p>
 </div><div class="column" style="width:45%;">
+<h3 id="rlearnpython">r/learnpython</h3>
 <p>Right column</p>
 </div>
 </div>
-<h3 id="rlearnpython">r/learnpython</h3>
 </section>
-<section>
-<section id="subreddit-comparisons" class="title-slide slide level1 center">
-<h1>Subreddit comparisons</h1>
+<section id="subreddit-comparisons" class="slide level2">
+<h2>Subreddit comparisons</h2>
 <div class="panel-tabset">
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">2019</a></li><li><a href="#tabset-1-2">2020</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
-<p>2019</p>
+
 </div>
 <div id="tabset-1-2">
-<p>2020</p>
+
 </div>
 </div>
 </div>
@@ -485,10 +466,9 @@ This methodology of community comparison is easily extended into other domains w
 <li>Interpret other subreddits</li>
 <li>Interpret other disciplines</li>
 </ul>
-</section></section>
-<section>
-<section id="references" class="title-slide slide level1 unnumbered smaller scrollable">
-<h1>References</h1>
+</section>
+<section id="references" class="slide level2 unnumbered smaller scrollable">
+<h2>References</h2>
 <div id="refs" class="references csl-bib-body" role="doc-bibliography">
 <div id="ref-blei2003latent" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[1] </div><div class="csl-right-inline">D. M. Blei, A. Y. Ng, and M. I. Jordan, <span>“Latent dirichlet allocation,”</span> <em>Journal of machine Learning research</em>, vol. 3, no. Jan, pp. 993–1022, 2003.</div>
@@ -502,14 +482,14 @@ This methodology of community comparison is easily extended into other domains w
 <p>website: <a href="tsranso.people.clemson.edu">tsranso.people.clemson.edu</a></p>
 <div id="qr1" class="qrcode"></div>
 <script type="text/javascript">
-var qrcode = new QRCode("qr1", {"width":"100","text":"https://tsranso.people.clemson.edu","colorDark":"#000000","colorLight":"#ffffff","height":"100"});
+var qrcode = new QRCode("qr1", {"text":"https://tsranso.people.clemson.edu","colorLight":"#ffffff","height":"100","colorDark":"#000000","width":"100"});
 </script>
     
 
 <img src="figures/Clemson_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
-
+<p>Subreddit Topic Modeling</p>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
@@ -603,7 +583,7 @@ var qrcode = new QRCode("qr1", {"width":"100","text":"https://tsranso.people.cle
         rtl: false,
 
         // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'linear',
+        navigationMode: 'grid',
 
         // Randomizes the order of slides each time the presentation loads
         shuffle: false,
@@ -667,7 +647,7 @@ var qrcode = new QRCode("qr1", {"width":"100","text":"https://tsranso.people.cle
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
+        transition: 'slide',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',

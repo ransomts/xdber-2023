@@ -1,5 +1,6 @@
 ---
-title: "xdber-2023"
+title: "Topic modeling Communities of Practice to Identify Learning Barriers"
+subtitle: "X-DBER 2023"
 author: "Tim Ransom"
 email: "tsranso@clemson.edu"
 bibliography: references.bib
@@ -9,12 +10,15 @@ html:
   default-image-extension: svg
 format:
   revealjs:
+    navigation-mode: grid
+    transition: slide
     menu:
       side: left
       width: wide
     logo: figures/Clemson_logo.png
     css: logo.css
     theme: serif
+    footer: "Subreddit Topic Modeling"
 ---
 
 ```{r setup, include=FALSE}
@@ -44,7 +48,7 @@ I investigate the communities r/Python and r/learnpython for this work. Both are
 This methodology of community comparison is easily extended into other domains with online communities. For example on Reddit there are dual communites for math (r/math & r/learnmath), engineering (r/engineering & r/EngineeringStudents), physics (r/Physics & r/learnPhysics), and several other STEM disciplines.
 -->
 
-## who am I
+## who I am
 
 :::: {.columns}
 ::: {.column width="45%"}
@@ -54,8 +58,8 @@ This methodology of community comparison is easily extended into other domains w
 - Clemson ESED graduate Student
 :::
 
-::: {.column width="45%"}
-![](figures/tim-headshot.jpg){width=80%, fig-alt="photograph of Tim"}
+::: {.column width="25%"}
+![](figures/tim-headshot.jpg){width=60%, fig-alt="photograph of Tim"}
 :::
 ::::
 
@@ -63,6 +67,24 @@ This methodology of community comparison is easily extended into other domains w
 ::: {.notes}
 I am the greatest
 :::
+
+## Natural Language Processing Topic Modeling
+
+Documents are comprised of a mixture of terms and topics.
+
+With sufficiently many documents we can correlate the relationship between terms and topics.
+
+
+
+## Latent Drilicht Allocation
+
+LDA [@blei2003latent] is a well established 
+
+ Applying Topic Modling to Reddit
+
+## Illuminatory Example
+
+![](figures/blei-2003-example-lda.png)
 
 ## What is Reddit
 
@@ -72,94 +94,56 @@ BBS-system pseudo-anonymous social media
 
 Organized into subreddits around topics
 
-## Conceptualizing subreddits communities of practice
+## Conceptualizing subreddits as communities of practice
 
  - people :: subscribed users
  - practice :: topic of the subreddit
  - culture :: internet jargon
-   
-## Natural Language Processing Topic Modeling
 
-Documents are comprised of a mixture of terms and topics.
 
-With sufficently many documents we can correlate the relationship between terms and topics.
-
-### Latent Drilicht Allocation
-
-LDA [@blei2003latent] is a well established 
-
- Applying Topic Modling to Reddit
-
-## venn diagram
+## Subreddit CoP Topic Overlap
 
 ```{r}
 library(ggvenn)
+library(svglite)
 
-data <- list(`python` = c("code", "python", "function"),
-          `learnpython` = c("help", "how to", "want", "python"))
-ggvenn(data, c("python", "learnpython"), show_elements = TRUE, label_sep = "\n\n", fill_color = c("#F56600", "#522D80"))
+data <- list(`r/python` = c("code", "python", "function"),
+          `r/learnpython` = c("help", "how to", "want", "python"))
+venn <- ggvenn(data, c("r/python", "r/learnpython"), show_elements = TRUE, label_sep = "\n\n", fill_color = c("#F56600", "#522D80"))
+
+ggsave(filename = "figures/subreddit_venn.svg", plot = venn)
 ```
-
-## {auto-animate=true auto-animate-easing="ease-in-out"}
-
-::: {.r-hstack}
-::: {data-id="box1" auto-animate-delay="0" style="background: #2780e3; width: 200px; height: 150px; margin: 10px;"}
-something
-:::
-
-::: {data-id="box2" auto-animate-delay="0.1" style="background: #3fb618; width: 200px; height: 150px; margin: 10px;"}
-foo
-:::
-
-::: {data-id="box3" auto-animate-delay="0.2" style="background: #e83e8c; width: 200px; height: 150px; margin: 10px;"}
-bar
-:::
-:::
-
-## {auto-animate=true auto-animate-easing="ease-in-out"}
-
-::: {.r-stack}
-::: {data-id="box1" style="background: #2780e3; width: 350px; height: 350px; border-radius: 200px;"}
-python
-:::
-
-::: {data-id="box2" style="background: #3fb618; width: 250px; height: 250px; border-radius: 200px;"}
-haskell
-:::
-
-::: {data-id="box3" style="background: #e83e8c; width: 150px; height: 150px; border-radius: 200px;"}
-lisp
-:::
-:::
-
+![](figures/subreddit_venn.svg)
 
 ## Single Subreddit Topics
 
-### r/python
 :::: {.columns}
 
 ::: {.column width="45%"}
+### r/python
+
 Left column
 :::
 
 ::: {.column width="45%"}
+### r/learnpython
+
 Right column
 :::
 
 ::::
-### r/learnpython
 
-# Subreddit comparisons
+## Subreddit comparisons
 
 ::: {.panel-tabset}
 
 ### 2019
 
-2019
+
 
 ### 2020
 
-2020
+
 
 :::
 
@@ -168,7 +152,7 @@ Right column
 - Interpret other subreddits
 - Interpret other disciplines
 
-# References {.unnumbered}
+## References {.unnumbered}
 
 ::: {#refs}
 :::

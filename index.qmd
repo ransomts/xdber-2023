@@ -74,7 +74,13 @@ Documents are comprised of a mixture of terms and topics.
 
 With sufficiently many documents we can correlate the relationship between terms and topics.
 
+## Uses of NLP in classrooms
 
+ - determine which topics students are asking for help online
+   - (assumption) highly requested help topics indicate difficulty in learning
+ - determine which topics students can find answers for online
+   - (assumption) students are searching for help on Reddit
+ - determine which topics students might be most exposed to online
 
 ## Latent Drilicht Allocation
 

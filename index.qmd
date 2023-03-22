@@ -21,6 +21,8 @@ format:
     footer: "Subreddit Topic Modeling"
 ---
 
+## who I am
+
 ```{r setup, include=FALSE}
 library(pak)
 library(languageserver)
@@ -32,9 +34,45 @@ library(VennDiagram)
 library(ggpubr)
 library(ggiraph)
 library(ggvenn)
+library(ggwordcloud)
+library(ggvenn)
+library(svglite)
+
+
+knitr::opts_chunk$set(cache = TRUE)
+
+make_interactive_graph <- function(data_filename, title, number_cols = 3) {
+  graph <- read_rds(data_filename) %>%
+    group_by(topic) %>%
+    top_n(7, beta) %>%
+    ungroup() %>%
+    arrange(topic, -beta) %>%
+    mutate(term = reorder(term, beta)) %>%
+    ggplot(mapping = aes(x = beta, y = term, fill = factor(topic))) +
+    ggtitle(title) +
+    geom_col_interactive(
+      show.legend = FALSE,
+      aes(tooltip = sprintf("%s: %.0f", term, beta))) + 
+    facet_wrap_interactive(vars(topic), scale = "free", ncol = number_cols)
+  return(graph)
+}
+
+make_wordcloud <- function(data_filename, title, number_cols = 2) {
+  plot <- read_rds(data_filename) %>% 
+    group_by(topic) %>%
+    top_n(30, beta) %>%
+    ungroup() %>% 
+    ggplot(aes(label = term, size = beta)) +
+    geom_text_wordcloud_area(rm_outside = TRUE) +
+    scale_size_area(max_size = 35) +
+    theme_minimal() +
+    ggtitle(title) +
+    facet_wrap(~topic, ncol = number_cols)
+
+  return(plot)
+}
+
 ```
-
-
 
 <!-- 
 # abstract
@@ -48,110 +86,241 @@ I investigate the communities r/Python and r/learnpython for this work. Both are
 This methodology of community comparison is easily extended into other domains with online communities. For example on Reddit there are dual communites for math (r/math & r/learnmath), engineering (r/engineering & r/EngineeringStudents), physics (r/Physics & r/learnPhysics), and several other STEM disciplines.
 -->
 
-## who I am
+::: {.columns}
+:::: {.column width="45%"}
 
-:::: {.columns}
-::: {.column width="45%"}
 - Computer Scientist
 - Mathematician
 - English Speaker
 - Clemson ESED graduate Student
-:::
+- Cat person
 
+::::
 ::: {.column width="25%"}
 ![](figures/tim-headshot.jpg){width=60%, fig-alt="photograph of Tim"}
 :::
+
+:::: {.column width="25%"} 
+:::: {.fragment .fade-in fragment-index=2}
+![](figures/ada.jpg){width=60%, fig-alt="Tim's cat Ada"}
 ::::
+::::
+
+:::
 
 
 ::: {.notes}
 I am the greatest
 :::
 
-## Natural Language Processing Topic Modeling
-
-Documents are comprised of a mixture of terms and topics.
-
-With sufficiently many documents we can correlate the relationship between terms and topics.
-
-## Uses of NLP in classrooms
+## Uses of NLP scraping in classrooms
 
  - determine which topics students are asking for help online
-   - (assumption) highly requested help topics indicate difficulty in learning
+   - (assumption) highly requested help topics indicate difficult to learn topics
  - determine which topics students can find answers for online
    - (assumption) students are searching for help on Reddit
  - determine which topics students might be most exposed to online
 
 ## Latent Drilicht Allocation
 
-LDA [@blei2003latent] is a well established 
+- LDA [@blei2003latent] is a well established NLP topic modelling algorithm
+- Documents are comprised of a mixture of terms and topics
+- With sufficiently many documents we can correlate the relationship between terms and topics
 
- Applying Topic Modling to Reddit
+ We'll be topic modelling Reddit post data
 
 ## Illuminatory Example
 
-![](figures/blei-2003-example-lda.png)
+```{r}
+knitr::include_graphics("figures/blei-2003-example-lda.png")
+```
 
 ## What is Reddit
 
-![Reddit](figures/Reddit_Mark_OnWhite.svg){width=10%}
+![](figures/Reddit_Mark_OnWhite.svg){.absolute top=0 right=0 width=200}
 
-BBS-system pseudo-anonymous social media
+ - BBS-system pseudo-anonymous social media
+   - (Basically image/text forums with accounts)
+ - Organized into subreddits around topics
+ <!-- - Topics range from memes to STEM disciplines -->
 
-Organized into subreddits around topics
+::: {.fragment}
+| Community     | Learning Community    |
+|---------------+-----------------------|
+| r/Python      | r/learnpython         |
+| r/math        | r/learnmath           |
+| r/engineering | r/EngineeringStudents |
+| r/Physics     | r/learnPhysics        |
+:::
 
 ## Conceptualizing subreddits as communities of practice
 
- - people :: subscribed users
- - practice :: topic of the subreddit
- - culture :: internet jargon
+ - people → subscribed users
+ - practice → topic of the subreddit
+ - culture → internet & domain
+
+::: {.fragment}
+![](figures/example-reddit-post.png)
+:::
 
 
-## Subreddit CoP Topic Overlap
+## Subreddit CoP Topics can Overlap
 
 ```{r}
-library(ggvenn)
-library(svglite)
 
 data <- list(`r/python` = c("code", "python", "function"),
           `r/learnpython` = c("help", "how to", "want", "python"))
 venn <- ggvenn(data, c("r/python", "r/learnpython"), show_elements = TRUE, label_sep = "\n\n", fill_color = c("#F56600", "#522D80"))
 
 ggsave(filename = "figures/subreddit_venn.svg", plot = venn)
+
+knitr::include_graphics("figures/subreddit_venn.svg")
 ```
-![](figures/subreddit_venn.svg)
 
-## Single Subreddit Topics
+## Python wordclouds
 
-:::: {.columns}
+::: {.columns}
 
-::: {.column width="45%"}
-### r/python
+:::: {.column width="45%"}
 
-Left column
-:::
+```{r}
+girafe(ggobj = make_interactive_graph(
+  data_filename = "/home/tsranso/Code/reddit-analysis/data/lda-Python-2017-6.rds",
+  title = "r/python 2017 topics",
+  number_cols = 1),
+  height_svg = 12)
+```
 
-::: {.column width="45%"}
-### r/learnpython
-
-Right column
-:::
 
 ::::
 
-## Subreddit comparisons
+:::: {.column width="45%"}
+```{r}
+wordcloud_plot <- make_wordcloud(
+  data_filename = "/home/tsranso/Code/reddit-analysis/data/lda-Python-2017-6.rds",
+  title = "r/python 2017 topic wordclouds", 
+  number_cols = 2)
+
+ggsave(plot = wordcloud_plot,
+       filename = paste0("figures/python-2017-wordcloud.svg"),
+       height = 12, units = "in")
+
+knitr::include_graphics(path = "figures/python-2017-wordcloud.svg")
+```
+
+::::
+
+:::
+
+## learnpython wordclouds
+
+::: {.columns}
+
+:::: {.column width="45%"}
+
+```{r}
+girafe(ggobj = make_interactive_graph(
+  data_filename = "/home/tsranso/Code/reddit-analysis/data/lda-learnpython-2017-6.rds",
+  title = "r/learnpython 2017 topics",
+  number_cols = 1),
+  height_svg = 12)
+```
+
+
+::::
+
+:::: {.column width="45%"}
+```{r}
+wordcloud_plot <- make_wordcloud(
+  data_filename = "/home/tsranso/Code/reddit-analysis/data/lda-learnpython-2017-6.rds",
+  title = "r/learnpython 2017 topic wordclouds", 
+  number_cols = 2)
+
+ggsave(plot = wordcloud_plot,
+       filename = paste0("figures/learnpython-2017-wordcloud.svg"),
+       height = 12, units = "in")
+
+knitr::include_graphics(path = "figures/learnpython-2017-wordcloud.svg")
+```
+
+::::
+
+:::
+
+
+## Single Subreddit Topics
+
+::: {.columns}
+
+:::: {.column width="45%"}
+r/python
+
+```{r}
+girafe(ggobj = make_interactive_graph(
+  data_filename = "/home/tsranso/Code/reddit-analysis/data/lda-Python-2017-6.rds",
+  title = "r/python 2017 topics",
+  number_cols = 1),
+  height_svg = 12)
+```
+
+::::
+
+:::: {.column width="45%"}
+r/learnpython
+
+```{r}
+girafe(ggobj = make_interactive_graph(
+  data_filename = "/home/tsranso/Code/reddit-analysis/data/lda-learnpython-2017-6.rds",
+  title = "r/learnpython 2017 topics",
+  number_cols = 1),
+  height_svg = 12)
+```
+
+::::
+
+:::
+
+## r/learnpython over time
 
 ::: {.panel-tabset}
 
-### 2019
+### 2014
 
+```{r}
+girafe(ggobj = make_interactive_graph(
+  data_filename = "/home/tsranso/Code/reddit-analysis/data/lda-learnpython-2014-6.rds",
+  title = "r/learnpython 2014 topics"))
+```
 
+### 2015
 
-### 2020
+```{r}
+girafe(ggobj = make_interactive_graph(
+  data_filename = "/home/tsranso/Code/reddit-analysis/data/lda-learnpython-2015-6.rds",
+  title = "r/learnpython 2015 topics"))
+```
 
+### 2016
 
+```{r}
+girafe(ggobj = make_interactive_graph(
+  data_filename = "/home/tsranso/Code/reddit-analysis/data/lda-learnpython-2016-6.rds",
+  title = "r/learnpython 2016 topics"))
+```
+
+### 2017
+
+```{r}
+girafe(ggobj = make_interactive_graph(
+  data_filename = "/home/tsranso/Code/reddit-analysis/data/lda-learnpython-2017-6.rds",
+  title = "r/learnpython 2017 topics"))
+```
 
 :::
+
+## Identified Learning Barriers
+
+
 
 ## Next Steps
 

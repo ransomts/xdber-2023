@@ -122,21 +122,8 @@ I am the greatest
  - determine which topics students can find answers for online
    - (assumption) students are searching for help on Reddit
  - determine which topics students might be most exposed to online
-
-## Latent Drilicht Allocation
-
-- LDA [@blei2003latent] is a well established NLP topic modelling algorithm
-- Documents are comprised of a mixture of terms and topics
-- With sufficiently many documents we can correlate the relationship between terms and topics
-
- We'll be topic modelling Reddit post data
-
-## Illuminatory Example
-
-```{r}
-knitr::include_graphics("figures/blei-2003-example-lda.png")
-```
-
+ - identifying barriers to learning
+ 
 ## What is Reddit
 
 ![](figures/Reddit_Mark_OnWhite.svg){.absolute top=0 right=0 width=200}
@@ -164,6 +151,21 @@ knitr::include_graphics("figures/blei-2003-example-lda.png")
 ::: {.fragment}
 ![](figures/example-reddit-post.png)
 :::
+
+
+## Latent Drilicht Allocation
+
+- LDA [@blei2003latent] is a well established NLP topic modelling algorithm
+- Documents are comprised of a mixture of terms and topics
+- With sufficiently many documents we can correlate the relationship between terms and topics
+
+ We'll be topic modelling Reddit post data
+
+## Illuminatory Example
+
+```{r}
+knitr::include_graphics("figures/blei-2003-example-lda.png")
+```
 
 
 ## Subreddit CoP Topics can Overlap

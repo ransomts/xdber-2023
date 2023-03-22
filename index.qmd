@@ -8,8 +8,10 @@ csl: ieee.csl
 html:
   anchor-sections: true
   default-image-extension: svg
+  
 format:
   revealjs:
+    embed-resources: true
     navigation-mode: grid
     transition: slide
     menu:

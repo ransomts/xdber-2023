@@ -142,16 +142,21 @@ I am the greatest
 | r/Physics     | r/learnPhysics        |
 :::
 
-## Conceptualizing subreddits as communities of practice
+## Conceptualizing subreddits as communities of practice [@lave1991situating]
 
  - people → subscribed users
  - practice → topic of the subreddit
- - culture → internet & domain
+ - culture → layered internet & domain
 
 ::: {.fragment}
 ![](figures/example-reddit-post.png)
 :::
 
+::: {.notes}
+Communities of practice are to help communicate with education researchers
+
+Screenshot is to illustrate the online culture layered with computing culture
+:::
 
 ## Latent Drilicht Allocation
 
@@ -159,7 +164,7 @@ I am the greatest
 - Documents are comprised of a mixture of terms and topics
 - With sufficiently many documents we can correlate the relationship between terms and topics
 
- We'll be topic modelling Reddit post data
+ We'll be topic modelling Reddit post data collected through pushshift [@baumgartner2020pushshift]
 
 ## Illuminatory Example
 

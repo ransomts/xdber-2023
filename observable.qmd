@@ -10,17 +10,18 @@ execute:
 
 <!-- ## topics -->
 
-<!-- ```{r, include=FALSE, cache=TRUE} -->
-<!-- library(magrittr) -->
-<!-- library(tidyverse) -->
-<!-- for (f in Sys.glob(file.path("/home/tsranso/Code/reddit-analysis/data/", "lda*.rds"))) { -->
-<!--   data <- readRDS(f) %>% -->
-<!--     arrange(topic, -beta) %>% -->
-<!--     write.csv(file = str_replace(string = f, -->
-<!--                                  pattern = "rds", -->
-<!--                                  replacement = "csv"), row.names = FALSE) -->
-<!-- } -->
-<!-- ``` -->
+```{r, include=FALSE, cache=TRUE, execute=FALSE}
+
+library(magrittr)
+library(tidyverse)
+for (f in Sys.glob(file.path("/home/tsranso/Code/reddit-analysis/data/", "lda*.rds"))) {
+  data <- readRDS(f) %>%
+    arrange(topic, -beta) %>%
+    write.csv(file = str_replace(string = f,
+                                 pattern = "rds",
+                                 replacement = "csv"), row.names = FALSE)
+}
+```
 
 ```{ojs}
 //| echo: false
@@ -29,39 +30,52 @@ execute:
 // import { T } from "@pbeshai/tidyjs"
 import {select} from '@jashkenas/inputs'
 
-subs = ["Python", "learnpython"]
-viewof selected_sub = Inputs.select(subs, {value: "Python", label: "Select subreddit"})
+// subs = ["Python", "learnpython"]
+// viewof selected_sub = Inputs.select(subs, {value: "Python", label: "Select subreddit"})
+
+viewof selection = {
+  const files = new Map([
+	  FileAttachment("lda-Python-2016-8.csv"),
+	  FileAttachment("lda-Python-2016-7.csv"),
+	  FileAttachment("lda-Python-2016-6.csv"),
+	  FileAttachment("lda-Python-2016-5.csv"),
+	  FileAttachment("lda-Python-2016-4.csv"),
+	  FileAttachment("lda-Python-2016-3.csv"),
+	  FileAttachment("lda-Python-2016-2.csv"),
+	  FileAttachment("lda-learnpython-2016-8.csv"),
+	  FileAttachment("lda-learnpython-2016-7.csv"),
+	  FileAttachment("lda-learnpython-2016-6.csv"),
+	  FileAttachment("lda-learnpython-2016-5.csv"),
+	  FileAttachment("lda-learnpython-2016-4.csv"),
+	  FileAttachment("lda-learnpython-2016-3.csv"),
+	  FileAttachment("lda-learnpython-2016-2.csv")
+
+  ].map(f => [f.name, f]));
+  
+  const form = select({
+    description: "Select data file",
+    options: Array.from(files.keys()),
+    value: "lda-Python-2016-6.csv"
+  });
+ 
+  return Object.defineProperty(html`<div>${form}`, 'value', {get() { return files.get(form.value) }});
+}
+
+foo = selection.csv({ typed: false })
+
+data = foo;
 
 viewof num_terms = Inputs.range(
   [2, 10],
   {value: 5, step: 1, label: "Number of terms per topic:"}
 )
 viewof num_topics = Inputs.range(
-  [2, 6],
+  [2, 8],
   {value: 2, step: 1, label: "Number of topics:"}
 )
 
-// viewof selection = {
-//   const files = new Map([
-// 	  FileAttachment("/home/tsranso/Code/reddit-analysis/data/lda-Python-2016-6.csv"),
-// 	  FileAttachment("/home/tsranso/Code/reddit-analysis/data/lda-learnpython-2016-6.csv")
-//   ].map(f => [f.name, f]));
-  
-//   const form = select({
-//     description: "Select data file",
-//     options: Array.from(files.keys()),
-//     value: "/home/tsranso/Code/reddit-analysis/data/lda-Python-2016-6.csv"
-//   });
- 
-//   return Object.defineProperty(html`<div>${form}`, 'value', {get() { return files.get(form.value) }});
-// }
-
-// fn = "/home/tsranso/Code/reddit-analysis/data/lda-" + selected_sub + "-2016-" + num_topics + ".csv"
-// bar = selection.csv({ typed: false })
-bar = FileAttachment("lda-Python-2016-6.csv").csv({ typed: false })
-
 // d3.rollup(iterable, reduce, ...keys)
-grouped = d3.rollups(bar,
+grouped = d3.rollups(data,
 					 v => v.sort().slice(0,num_terms),
 					 term => term.topic)
 	.flat(1)
@@ -72,11 +86,12 @@ grouped = d3.rollups(bar,
 
 ```{ojs}
 //| label: fig-penguin-body-mass
-//| fig-cap: "Penguin body mass by sex and species"
+//| fig-cap: "LDA Term Betas"
 
 Plot.plot(
 	{
 		height: 800,
+		width: 800,
 		marginLeft: 80,
 		grid: true,
 		facet: {data: grouped, y: "topic"},
@@ -92,7 +107,7 @@ Plot.plot(
 				fill: "topic",
 				 sort: {
 				 	y: {value: "x", reduce: "max", reverse: true},
-				 	 //fy: {value: "x", reduce: "mean", reverse: true}
+				 	fy: {value: "x", reduce: "mean", reverse: true}
 				 }
 			})
 		]

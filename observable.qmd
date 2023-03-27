@@ -1,0 +1,104 @@
+---
+title: "Playing with observable"
+format:
+  html:
+    embed-resources: true
+execute:
+  echo: false
+---
+
+
+<!-- ## topics -->
+
+<!-- ```{r, include=FALSE, cache=TRUE} -->
+<!-- library(magrittr) -->
+<!-- library(tidyverse) -->
+<!-- for (f in Sys.glob(file.path("/home/tsranso/Code/reddit-analysis/data/", "lda*.rds"))) { -->
+<!--   data <- readRDS(f) %>% -->
+<!--     arrange(topic, -beta) %>% -->
+<!--     write.csv(file = str_replace(string = f, -->
+<!--                                  pattern = "rds", -->
+<!--                                  replacement = "csv"), row.names = FALSE) -->
+<!-- } -->
+<!-- ``` -->
+
+```{ojs}
+//| echo: false
+//| output: all
+
+// import { T } from "@pbeshai/tidyjs"
+import {select} from '@jashkenas/inputs'
+
+subs = ["Python", "learnpython"]
+viewof selected_sub = Inputs.select(subs, {value: "Python", label: "Select subreddit"})
+
+viewof num_terms = Inputs.range(
+  [2, 10],
+  {value: 5, step: 1, label: "Number of terms per topic:"}
+)
+viewof num_topics = Inputs.range(
+  [2, 6],
+  {value: 2, step: 1, label: "Number of topics:"}
+)
+
+// viewof selection = {
+//   const files = new Map([
+// 	  FileAttachment("/home/tsranso/Code/reddit-analysis/data/lda-Python-2016-6.csv"),
+// 	  FileAttachment("/home/tsranso/Code/reddit-analysis/data/lda-learnpython-2016-6.csv")
+//   ].map(f => [f.name, f]));
+  
+//   const form = select({
+//     description: "Select data file",
+//     options: Array.from(files.keys()),
+//     value: "/home/tsranso/Code/reddit-analysis/data/lda-Python-2016-6.csv"
+//   });
+ 
+//   return Object.defineProperty(html`<div>${form}`, 'value', {get() { return files.get(form.value) }});
+// }
+
+// fn = "/home/tsranso/Code/reddit-analysis/data/lda-" + selected_sub + "-2016-" + num_topics + ".csv"
+// bar = selection.csv({ typed: false })
+bar = FileAttachment("lda-Python-2016-6.csv").csv({ typed: false })
+
+// d3.rollup(iterable, reduce, ...keys)
+grouped = d3.rollups(bar,
+					 v => v.sort().slice(0,num_terms),
+					 term => term.topic)
+	.flat(1)
+	.sort()
+	.slice(6)
+	.flat(1).filter(term => term.topic < num_topics)
+```
+
+```{ojs}
+//| label: fig-penguin-body-mass
+//| fig-cap: "Penguin body mass by sex and species"
+
+Plot.plot(
+	{
+		height: 800,
+		marginLeft: 80,
+		grid: true,
+		facet: {data: grouped, y: "topic"},
+		// x: {type: "log", domain: [1e2, 1e4], clamp: true},
+		y: {inset: 8},
+		color: {type: "categorical"},
+		marks: [
+			Plot.frame(),
+			Plot.barX(grouped, {
+				fy: "topic",
+				y: "term",
+				x: "beta",
+				fill: "topic",
+				 sort: {
+				 	y: {value: "x", reduce: "max", reverse: true},
+				 	 //fy: {value: "x", reduce: "mean", reverse: true}
+				 }
+			})
+		]
+	})
+```
+
+<!-- ```{emacs-lisp} -->
+<!-- (defalias 'ojs-mode 'js-mode) -->
+<!-- ``` -->

@@ -11,7 +11,7 @@ html:
   
 format:
   revealjs:
-    embed-resources: true
+    embed-resources: false
     navigation-mode: grid
     transition: slide
     menu:
@@ -256,6 +256,7 @@ knitr::include_graphics(path = "figures/learnpython-2017-wordcloud.svg")
 
 :::
 
+## ojs test {background-iframe="https://ransomts.github.io/xdber-2023/observable.html" background-interactive=true}
 
 ## Single Subreddit Topics
 

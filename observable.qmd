@@ -1,8 +1,8 @@
 ---
-title: "Playing with observable"
+title: ""
 format:
   html:
-    embed-resources: true
+    embed-resources: false
 execute:
   echo: false
 ---
@@ -24,7 +24,7 @@ execute:
 
 ```{ojs}
 //| echo: false
-//| output: all
+// //| output: all
 
 // import { T } from "@pbeshai/tidyjs"
 import {select} from '@jashkenas/inputs'

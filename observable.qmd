@@ -25,7 +25,7 @@ for (f in Sys.glob(file.path("/home/tsranso/Code/reddit-analysis/data/", "lda*.r
 
 ```{ojs}
 //| echo: false
-// //| output: all
+//| output: all
 
 // import { T } from "@pbeshai/tidyjs"
 import {select} from '@jashkenas/inputs'
@@ -53,7 +53,7 @@ viewof selection = {
   ].map(f => [f.name, f]));
   
   const form = select({
-    description: "Select data file",
+    description: "Select data file lda-subreddit-year-num_topics.csv",
     options: Array.from(files.keys()),
     value: "lda-Python-2016-6.csv"
   });
@@ -66,8 +66,8 @@ foo = selection.csv({ typed: false })
 data = foo;
 
 viewof num_terms = Inputs.range(
-  [2, 10],
-  {value: 5, step: 1, label: "Number of terms per topic:"}
+  [1, 10],
+  {value: 1, step: 1, label: "Number of terms per topic:"}
 )
 viewof num_topics = Inputs.range(
   [2, 8],
@@ -85,12 +85,12 @@ grouped = d3.rollups(data,
 ```
 
 ```{ojs}
-//| label: fig-penguin-body-mass
+//| label: fig-lda-topics
 //| fig-cap: "LDA Term Betas"
 
 Plot.plot(
 	{
-		height: 800,
+		//height: 800,
 		width: 800,
 		marginLeft: 80,
 		grid: true,
@@ -101,9 +101,10 @@ Plot.plot(
 		marks: [
 			Plot.frame(),
 			Plot.barX(grouped, {
-				fy: "topic",
+				//fy: "topic",
 				y: "term",
 				x: "beta",
+				facet: "include",
 				fill: "topic",
 				 sort: {
 				 	y: {value: "x", reduce: "max", reverse: true},

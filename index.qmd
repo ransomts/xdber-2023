@@ -8,11 +8,13 @@ csl: ieee.csl
 html:
   anchor-sections: true
   default-image-extension: svg
-  
+
 format:
   revealjs:
     embed-resources: false
     navigation-mode: grid
+    controls: true
+    controls-layout: bottom-right
     transition: slide
     menu:
       side: left
@@ -44,6 +46,11 @@ library(svglite)
 knitr::opts_chunk$set(cache = TRUE)
 
 make_interactive_graph <- function(data_filename, title, number_cols = 3) {
+  
+  if (!file.exists(data_filename)) {
+    stop(message = "Data file does not exist")
+  }
+  
   graph <- read_rds(data_filename) %>%
     group_by(topic) %>%
     top_n(7, beta) %>%
@@ -115,14 +122,18 @@ This methodology of community comparison is easily extended into other domains w
 I am the greatest
 :::
 
-## Uses of NLP scraping in classrooms
+## Uses of NLP in classrooms
 
- - determine which topics students are asking for help online
+::: incremental
+ - which topics students are asking for help online?
    - (assumption) highly requested help topics indicate difficult to learn topics
- - determine which topics students can find answers for online
+ - which topics students can find answers for online?
    - (assumption) students are searching for help on Reddit
- - determine which topics students might be most exposed to online
- - identifying barriers to learning
+ - which topics students might be most exposed to online?
+ - *identifying barriers to learning*
+:::
+
+ 
  
 ## What is Reddit
 
@@ -160,11 +171,25 @@ Screenshot is to illustrate the online culture layered with computing culture
 
 ## Latent Drilicht Allocation
 
+::: {.columns}
+
+:::: {.column width="45%"}
+
 - LDA [@blei2003latent] is a well established NLP topic modelling algorithm
 - Documents are comprised of a mixture of terms and topics
 - With sufficiently many documents we can correlate the relationship between terms and topics
 
- We'll be topic modelling Reddit post data collected through pushshift [@baumgartner2020pushshift]
+::::
+
+
+::::  {.column width="45%"}
+::::: {.fragment}
+
+We'll be topic modelling Reddit post data collected through pushshift [@baumgartner2020pushshift] and processed with R and spark [@sparklyr] on Clemson's Palemtto cluster computer [@palmetto_cluster]
+:::::
+::::
+
+:::
 
 ## Illuminatory Example
 
@@ -256,7 +281,7 @@ knitr::include_graphics(path = "figures/learnpython-2017-wordcloud.svg")
 
 :::
 
-## ojs test {background-iframe="https://ransomts.github.io/xdber-2023/observable.html" background-interactive=true}
+## Data vis {background-iframe="https://ransomts.github.io/xdber-2023/observable.html" background-interactive=true}
 
 ## Single Subreddit Topics
 
@@ -330,7 +355,11 @@ girafe(ggobj = make_interactive_graph(
 
 ## Identified Learning Barriers
 
-
+- User Input Loop
+- classes vs scripts (OOP foundations)
+- Interpreting debug messages
+- Data formatting
+- Array Indexing
 
 ## Next Steps
 
@@ -351,5 +380,5 @@ github:
 [https://github.com/ransomts](https://github.com/ransomts)
 
 website:
-[tsranso.people.clemson.edu](tsranso.people.clemson.edu)
+[tsranso.people.clemson.edu](https://tsranso.people.clemson.edu)
 {{< qrcode https://tsranso.people.clemson.edu qr1 width=100 height=100 >}}

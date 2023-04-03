@@ -125,12 +125,12 @@ I am the greatest
 ## Uses of NLP in classrooms
 
 ::: incremental
- - which topics students are asking for help online?
-   - (assumption) highly requested help topics indicate difficult to learn topics
- - which topics students can find answers for online?
-   - (assumption) students are searching for help on Reddit
- - which topics students might be most exposed to online?
- - *identifying barriers to learning*
+ - Which topics students are asking for help online?
+   - (Assumption) Highly requested help topics indicate difficult to learn topics
+ - Which topics students can find answers for online?
+   - (Assumption) students are searching for help on Reddit
+ - Which topics students might be most exposed to online?
+ - *Identifying barriers to learning*
 :::
 
  
@@ -152,6 +152,12 @@ I am the greatest
 | r/engineering | r/EngineeringStudents |
 | r/Physics     | r/learnPhysics        |
 :::
+
+::: {.notes}
+bbs = bulletin board system
+mention the r/ notation for subreddit names
+:::
+
 
 ## Conceptualizing subreddits as communities of practice [@lave1991situating]
 
@@ -211,7 +217,17 @@ ggsave(filename = "figures/subreddit_venn.svg", plot = venn)
 knitr::include_graphics("figures/subreddit_venn.svg")
 ```
 
+::: {.notes}
+The stuff in the "only learning" space is our considered priority
+:::
+
 ## Python wordclouds
+
+::: {.notes}
+wordclouds are generally not so good... but we actually are pulling out a label from a concept map with weighted words here
+
+betas -> topic density ie how frequently this term is in this topic
+:::
 
 ::: {.columns}
 
@@ -315,6 +331,19 @@ girafe(ggobj = make_interactive_graph(
 
 :::
 
+## Identified Learning Barriers
+
+- User Input Loop
+- classes vs scripts (OOP foundations)
+- Interpreting debug messages
+- Data formatting
+- Array Indexing
+
+::: {.notes}
+I am the greatest
+:::
+
+
 ## r/learnpython over time
 
 ::: {.panel-tabset}
@@ -353,18 +382,23 @@ girafe(ggobj = make_interactive_graph(
 
 :::
 
-## Identified Learning Barriers
+## r/learnpython identified trends
 
-- User Input Loop
-- classes vs scripts (OOP foundations)
-- Interpreting debug messages
-- Data formatting
-- Array Indexing
+- Users are asking for more examples
+- File I/O & array posts remain constant
+- General question posts on the rise
+- Getting started posts on the rise
 
 ## Next Steps
 
 - Interpret other subreddits
 - Interpret other disciplines
+- Investigate other text sources
+
+::: {.notes}
+Mention other LDA talk
+:::
+
 
 ## References {.unnumbered}
 

@@ -25,7 +25,7 @@ for (f in Sys.glob(file.path("/home/tsranso/Code/reddit-analysis/data/", "lda*.r
 
 ```{ojs}
 //| echo: false
-//| output: all
+// //| output: all
 
 // import { T } from "@pbeshai/tidyjs"
 import {select} from '@jashkenas/inputs'

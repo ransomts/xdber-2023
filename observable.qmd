@@ -55,7 +55,7 @@ viewof selection = {
   const form = select({
     description: "Select data file lda-subreddit-year-num_topics.csv",
     options: Array.from(files.keys()),
-    value: "lda-Python-2016-6.csv"
+    value: "lda-Python-2016-7.csv"
   });
  
   return Object.defineProperty(html`<div>${form}`, 'value', {get() { return files.get(form.value) }});

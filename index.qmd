@@ -221,7 +221,7 @@ knitr::include_graphics("figures/subreddit_venn.svg")
 The stuff in the "only learning" space is our considered priority
 :::
 
-## Python wordclouds
+## r/Python wordclouds
 
 ::: {.notes}
 wordclouds are generally not so good... but we actually are pulling out a label from a concept map with weighted words here
@@ -262,7 +262,7 @@ knitr::include_graphics(path = "figures/python-2017-wordcloud.svg")
 
 :::
 
-## learnpython wordclouds
+## r/learnpython wordclouds
 
 ::: {.columns}
 
